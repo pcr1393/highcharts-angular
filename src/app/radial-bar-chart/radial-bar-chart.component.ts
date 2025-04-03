@@ -92,9 +92,7 @@ export class RadialBarChartComponent implements OnInit {
     this.chartOptionsForBar2 = {
       chart: {
         type: 'column',
-        backgroundColor: 'transparent', // No background,
-        width: 500,
-        height: 300
+        backgroundColor: 'transparent' // No background
       },
       title: {
         text: 'User Generated vs Generative AI Alerts',
@@ -118,7 +116,7 @@ export class RadialBarChartComponent implements OnInit {
         min: 0,
         max: 100,
         title: {
-          text: 'Percentage',
+          text: 'Number of Alerts',
           style: {
             color: '#333',
             fontSize: '14px'
@@ -143,6 +141,7 @@ export class RadialBarChartComponent implements OnInit {
         {
           name: 'User Generated (UG)',
           type: 'column',
+          color: '#4A90E2', // Ensuring legend dot matches bar
           data: [
             { y: 70, color: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, '#4A90E2'], [1, '#1B4F93']] } },
             { y: 5, color: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, '#4A90E2'], [1, '#1B4F93']] } },
@@ -152,13 +151,48 @@ export class RadialBarChartComponent implements OnInit {
         {
           name: 'Generative AI (GA)',
           type: 'column',
+          color: '#FF9800', // Ensuring legend dot matches bar
           data: [
             { y: 68, color: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, '#FF9800'], [1, '#D84315']] } },
             { y: 5, color: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, '#FF9800'], [1, '#D84315']] } },
             { y: 27, color: { linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 }, stops: [[0, '#FF9800'], [1, '#D84315']] } }
           ]
         }
-      ]
+      ],
+      annotations: [
+        {
+          labels: [
+            {
+              point: { x: 0, y: 69, xAxis: 0, yAxis: 0 }, // Between UG (70) & GA (68)
+              text: '97%',
+              backgroundColor: 'rgba(255,255,255,0.8)',
+              borderColor: '#333',
+              shape: 'callout'
+            },
+            {
+              point: { x: 1, y: 5, xAxis: 0, yAxis: 0 }, // Between UG (5) & GA (5)
+              text: '100%',
+              backgroundColor: 'rgba(255,255,255,0.8)',
+              borderColor: '#333',
+              shape: 'callout'
+            },
+            {
+              point: { x: 2, y: 26, xAxis: 0, yAxis: 0 }, // Between UG (25) & GA (27)
+              text: '108%',
+              backgroundColor: 'rgba(255,255,255,0.8)',
+              borderColor: '#333',
+              shape: 'callout'
+            }
+          ]
+        }
+      ],
+      legend: {
+        itemStyle: {
+          color: '#333', // Ensuring both labels are the same color
+          fontSize: '14px',
+          fontWeight: 'bold'
+        }
+      }
     };
 
 
